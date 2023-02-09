@@ -1,0 +1,62 @@
+<div class="img"> <img src="assets/resimler/air.png" width="900px" height="416px"></div>
+
+<label class="label">Name</label>
+<label class="label2">Code</label>
+
+<label class="label3">City</label>
+<label class="label4">Country</label>
+
+<div class="ticket">
+    <input [(ngModel)]="airportInput.name" type="text">
+    <input [(ngModel)]="airportInput.code" type="text">
+    <br>
+    <br>
+    <input [(ngModel)]="airportInput.city" type="text">
+    <input [(ngModel)]="airportInput.country" type="text">
+    <br>
+    <br>
+ 
+    <div class="button1">
+      <button (click)="addAirport()" class="button">Add</button>
+</div>
+</div>
+<br>
+<br>
+
+   
+    <div class="table">
+              <tr>
+              <tr>
+                <table style="float:right"  >
+            <tr>
+              <th>No</th> 
+              <th>Name</th>
+              <th>Code</th>
+              <th>City</th>
+              <th>Country</th>
+              <th>Delete</th> 
+
+            </tr>
+            <tr *ngFor="let airport of airports">
+              <ng-container *ngIf="airport.deleteStatus != true">
+              <td>{{airport.id}}</td>
+              <td>{{airport.name}}</td>
+              <td>{{airport.code}}</td>
+              <td>{{airport.city}}</td>
+              <td>{{airport.country}}</td>
+              <td><button (click)="deleteAirport(airport)">Delete</button></td>
+            </ng-container>
+            <ng-container *ngIf="airport.deleteStatus == true">
+             
+            </ng-container>
+            </tr>
+           
+          </table>
+         
+        </div>
+
+      <div class="no" >
+      <input class="no2" [(ngModel)]="airportInput.id" type="text" placeholder="No">
+      <br>
+      <button (click)="updateAirport()" class="button2">Update</button>
+    </div>

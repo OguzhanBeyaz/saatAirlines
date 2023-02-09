@@ -1,0 +1,81 @@
+<div class="img"> <img src="assets/resimler/air.png" width="900px" height="416px"></div>
+
+<label class="label1">Mile</label>
+
+<label class="label2">Source</label>
+<label class="label3">Distination</label>
+
+<div class="ticket">
+    <input [(ngModel)]="routeInput.distanceInMiles" type="text">
+    
+    <br>
+    <br>
+    <select [(ngModel)]="routeInput.source!.id"   class="combobox2" >
+      <ng-container *ngFor="let airport of airports ">
+           <ng-container *ngIf="airport.deleteStatus != true">
+
+           
+          <option   [value]="airport.id">
+            {{airport.name}}
+          </option>
+        </ng-container>
+      </ng-container>
+      
+      </select>
+      
+    <select [(ngModel)]="routeInput.destination!.id"   class="combobox2" >
+      <ng-container *ngFor="let airport of airports ">
+           <ng-container *ngIf="airport.deleteStatus != true">
+
+           
+          <option   [value]="airport.id">
+            {{airport.name}}
+          </option>
+        </ng-container>
+      </ng-container>
+      
+      </select>
+    <br>
+    <br>
+ 
+    <div class="button1">
+    <button (click)="addRoute()" class="button">Add</button>
+</div>
+</div>
+<br>
+<br>
+    <div class="table">
+      <table style="float:right">
+          <tr>
+            <th>No</th>
+            <th>Mile</th>
+            <th>Source</th>
+            <th>Distination</th>
+            <th>Delete</th>  
+          </tr>
+          <tr *ngFor="let route of routes">
+            <ng-container *ngIf="route.deleteStatus != true">
+            <td>{{route.id}}</td>
+            <td>{{route.distanceInMiles}}</td>
+            <td>{{route.source?.name}}</td>
+            <td>{{route.destination?.name}}</td>
+            <td><button (click)="deleteRoute(route)">Delete</button></td>
+           </ng-container>
+            <ng-container *ngIf="route.deleteStatus == true">
+             
+            </ng-container>
+          </tr>
+         
+        </table>
+      
+      </div>
+
+      <div class="no" >
+        <input class="no2" [(ngModel)]="routeInput.id" type="text" placeholder="No">
+        <br>
+        <button (click)="updateRoute()"  class="button2">Update</button>
+      </div>
+
+
+
+     

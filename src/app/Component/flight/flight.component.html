@@ -1,0 +1,85 @@
+<div class="img"> <img src="assets/resimler/air.png" width="900px" height="416px"></div>
+
+<label class="label">Flight Number</label>
+<label class="label2">Route</label>
+
+<label class="label3">Departure Time</label>
+<label class="label4">Arrival Time</label>
+
+<label class="label5">Price</label>
+<label class="label6">Capacity</label>
+
+<div class="ticket">
+    <input [(ngModel)]="flightInput.flightNumber" type="text">
+  
+    
+
+      <select [(ngModel)]="flightInput.route!.id"   class="combobox" >
+        <ng-container *ngFor="let route of routes ">
+             <ng-container *ngIf="route.deleteStatus != true">
+            <option   [value]="route.id">
+            Kalkış :  {{route.source!.name}} || İniş : {{route.destination!.name}}
+            </option>
+          </ng-container>
+        </ng-container>     
+        </select>
+        
+    <br>
+    <br>
+    <input [(ngModel)]="flightInput.departureTime" class="date"  type="date">
+    <input [(ngModel)]="flightInput.arrivalTime" class="date" type="date">
+    <br>
+    <br>
+    <input [(ngModel)]="flightInput.price" type="text">
+    <input [(ngModel)]="flightInput.capacity" type="text">
+    <br>
+    <br>
+ 
+    <div class="button1">
+    <button (click)="addFlight()" class="button">Add</button>
+</div>
+</div>
+<br>
+<br>
+<div class="table">
+    <table style="float:right">
+        <tr>
+          <th>No</th>
+          <th>Flight Number</th>
+          <th>Route</th>
+          <th>Departure Time</th>
+          <th>Arrival Time</th>
+          <th>Price</th>
+          <th>Capacity</th>
+          <th>Status</th>
+          <th>Delete</th> 
+        </tr>
+        <tr *ngFor="let flight of flights">
+          <ng-container *ngIf="flight.deleteStatus != true">
+          <td>{{flight.id}}</td>
+          <td>{{flight.flightNumber}}</td>
+          <td>{{flight.route?.id}}</td>
+          <td>{{flight.departureTime}}</td>
+          <td>{{flight.arrivalTime}}</td>
+          <td>{{flight.price}}</td>
+          <td>{{flight.capacity}}</td>
+          <td>{{flight.status}}</td>
+          <td><button (click)="deleteFlight(flight)">Delete</button></td>
+        </ng-container>
+        <ng-container *ngIf="flight.deleteStatus == true">
+         
+        </ng-container>
+       
+        </tr>
+      
+      
+      </table>
+   
+    </div>
+
+
+    <div class="no" >
+      <input class="no2" [(ngModel)]="flightInput.id" type="text" placeholder="No">
+      <br>
+      <button (click)="updateFlight()" class="button2">Update</button>
+    </div>

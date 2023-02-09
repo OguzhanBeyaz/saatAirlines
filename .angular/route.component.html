@@ -1,0 +1,43 @@
+<div class="img"> <img src="assets/resimler/air.png" width="900px" height="416px"></div>
+<div class="ticket">
+
+    <input [(ngModel)]="routeInput.distanceInMiles" type="text" placeholder="Distance İn Miles">
+    
+    <br>
+    <br>
+    <select [(ngModel)]="routeInput.source"  class="combobox">
+      <option *ngFor="let airport of airports" [value]="airport">
+        {{ airport.name }} 
+    </option>
+
+      </select>
+    <select [(ngModel)]="routeInput.destination"   class="combobox2">
+      <option *ngFor="let airport of airports" [value]="airport">
+        {{ airport.name }} 
+    </option>
+      </select>
+    <br>
+    <br>
+ 
+    <div class="button1">
+    <button (click)="addRoute()" class="button">Ekle</button>
+</div>
+</div>
+<br>
+<br>
+    <div class="table">
+      <table style="float:right">
+          <tr>
+            <th>Miles</th>
+            <th>Source</th>
+            <th>Distination</th> 
+          </tr>
+          <tr *ngFor="let route of routes">
+            <td>{{route.distanceInMiles}}</td>
+            <td>{{route.source?.name}}</td>
+            <td>{{route.destination?.name}}</td>
+          </tr>
+         
+        </table>
+     
+      </div>
